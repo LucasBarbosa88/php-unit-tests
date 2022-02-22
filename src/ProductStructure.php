@@ -3,7 +3,6 @@ namespace App;
 
 class ProductStructure
 {
-    var $prods = [];
     const products = [
         "preto-PP",
         "preto-M",
@@ -21,10 +20,19 @@ class ProductStructure
 
     public function make(): array
     {
-        $this->prods = explode('-', $this->products);
-        foreach($this->prods as $prod){
-            var_dump($prod);
+        $results = [];
+        foreach($this->products as $key => $product){
+            $this->products[$key] = explode('-', $product);
         }
-        return $this->prod;
+
+        foreach($this->products as $product) {
+            if(isset($result[$product[0]][$product[1]])){
+                $result[$product[0]][$product[1]]++;
+            } else {
+                $result[$product[0]][$product[1]] = 1;
+            }
+        }
+
+        return $result;
     }
 }
